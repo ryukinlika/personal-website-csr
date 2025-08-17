@@ -1,5 +1,6 @@
 /* Main Tailwind CSS file */
 @import "tailwindcss";
+@plugin "daisyui";
 @import url('https://fonts.googleapis.com/css?family=Roboto:700|Roboto:400');
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -41,6 +42,11 @@ h5 {
     font-family: "Roboto", sans-serif;
     font-weight: 700;
     font-style: normal;
+}
+
+h4,
+h5 {
+    font-weight: 500;
 }
 
 html {
