@@ -16,9 +16,9 @@
 
     --color-main: #0f0f0f;
     --color-background: #d6d7e6;
-    --color-primary: #0b004d;
-    --color-secondary: #036677;
-    --color-accent: #054d38;
+    --color-n-primary: #0b004d;
+    --color-n-secondary: #036677;
+    --color-n-accent: #054d38;
 
     --color-dm-main: #f0f0f0;
     --color-dm-background: #191a29;
@@ -44,7 +44,10 @@ h5 {
     font-style: normal;
 }
 
-h4,
+h4 {
+    font-weight: 600;
+}
+
 h5 {
     font-weight: 500;
 }
