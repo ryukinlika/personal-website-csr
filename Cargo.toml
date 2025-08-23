@@ -13,6 +13,7 @@ leptos_router = { version = "0.8" }
 console_log = "1"
 log = "0.4"
 console_error_panic_hook = "0.1"
+leptos-use = "0.16.2"
 
 
 [dev-dependencies]

@@ -54,3 +54,28 @@ pub fn SocialLink() -> impl IntoView {
         </div>
     }
 }
+
+#[component]
+pub fn SectionNav(
+    #[prop(default = "title")] title: &'static str,
+    #[prop(default = "#")] href: &'static str,
+    #[prop(default = RwSignal::new("".to_string()))] active: RwSignal<String>,
+) -> impl IntoView {
+    view! {
+        <div
+            class="transition-all duration-100"
+            class=(
+                ["text-base", "font-bold", "underline", "text-n-accent", "dark:text-dm-accent"],
+                move || active.get() == title.to_string(),
+            )
+            class=(
+                ["text-sm", "font-normal", "text-main", "dark:text-dm-main"],
+                move || active.get() != title.to_string(),
+            )
+        >
+            <a rel="noopener noreferrer" href=href>
+                {title}
+            </a>
+        </div>
+    }
+}

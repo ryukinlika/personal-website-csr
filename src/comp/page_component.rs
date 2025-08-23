@@ -1,14 +1,94 @@
-use leptos::prelude::*;
+use leptos::{html::Div, logging, prelude::*};
+use leptos_use::{use_element_visibility, use_mouse_in_element, UseMouseInElementReturn};
 
 #[component]
 pub fn ContentSection(
     #[prop(default = "Heading")] heading: &'static str,
+    #[prop(default = "")] id: &'static str,
+    #[prop(default = RwSignal::new(vec!{}))] heading_list: RwSignal<Vec<String>>,
+    #[prop(default = RwSignal::new("".to_string()))] active: RwSignal<String>,
     children: Children,
 ) -> impl IntoView {
+    let el = NodeRef::<Div>::new();
+    let UseMouseInElementReturn { is_outside, .. } = use_mouse_in_element(el);
+    let is_visible = use_element_visibility(el);
+
+    heading_list.write().push(heading.to_string());
+
+    Effect::new(move |_| {
+        // logging::log!("component= {}, is_visible={}", heading, is_visible.get());
+        let heading_list = heading_list.get();
+        if is_visible.get() {
+            //appear
+            if active.get() == "".to_string() {
+                //none is active, first
+                active.set(heading.to_string());
+            } else {
+                let new = heading_list.iter().position(|x| *x == heading.to_string());
+                let curr = heading_list.iter().position(|x| *x == active.get());
+                if new.is_some() && curr.is_some() && new.unwrap() < curr.unwrap() {
+                    active.set(heading.to_string());
+                }
+            }
+        } else {
+            //disappear (1x occur on startup)
+            if active.get() == heading.to_string() {
+                logging::log!(
+                    "disappear - active = heading {}, headingList={:?}",
+                    active.get(),
+                    heading_list
+                );
+                let curr = heading_list.iter().position(|x| *x == active.get());
+                if curr.is_some() {
+                    let next = curr.unwrap() + 1;
+                    if next < heading_list.len() {
+                        active.set(heading_list[next].clone());
+                    } else {
+                        logging::log!(
+                            "WARNING, GOT INVALID INDEX WHEN {} DISAPPEAR, len {}, next {}",
+                            heading,
+                            heading_list.len(),
+                            next
+                        );
+                    }
+                } else {
+                    logging::log!("WARNING, ACTIVE EXISTS BUT NOT IN HEADING LIST");
+                }
+            }
+        }
+    });
     view! {
-        <div class="flex flex-col space-y-0.5">
-            <div class="sticky top-0 z-50 bg-background dark:bg-dm-background">
-                <h3 class="mt-2 sm:mt-4">{heading}</h3>
+        <div
+            node_ref=el
+            class="flex flex-col space-y-0.5 transition-all duration-500"
+            class=(
+                [
+                    "bg-radial-[at_0%_50%]",
+                    "from-background-1",
+                    "to-background",
+                    "dark:from-dm-background-1",
+                    "dark:to-dm-background",
+                ],
+                move || !is_outside.get(),
+            )
+            class=(["bg-background", "dark:bg-dm-background"], move || is_outside.get())
+        >
+
+            <div class="sticky top-0 z-50 bg-background dark:bg-dm-background transition-all duration-500">
+                <h3
+                    class="mt-2 sm:mt-4 transition-all duration-500"
+                    class=(
+                        ["text-n-accent", "dark:text-dm-accent"],
+                        move || active.get() == heading.to_string(),
+                    )
+                    class=(
+                        ["text-main", "dark:text-dm-main"],
+                        move || active.get() != heading.to_string(),
+                    )
+                    id=id
+                >
+                    {heading}
+                </h3>
                 <div class="divider sm:hidden m-0  before:bg-n-primary after:bg-n-primary dark:before:bg-dm-primary dark:after:bg-dm-primary opacity-10 "></div>
             </div>
             <div class="flex flex-col align-center w-full py-2 space-y-6">{children()}</div>
@@ -50,59 +130,42 @@ pub fn ItemLists(items: Vec<&'static str>) -> impl IntoView {
 }
 
 #[component]
-pub fn ItemCard() -> impl IntoView {
+pub fn ItemCard(
+    #[prop(default = "Heading")] heading: &'static str,
+    #[prop(default = "Description")] description: &'static str,
+    #[prop(default = "images/stare-blank.png")] img: &'static str,
+    #[prop(default = "")] link: &'static str,
+    children: Children,
+) -> impl IntoView {
     view! {
-        <div class="card card-side shadow-sm border rounded-2xl border-n-secondary dark:border-dm-secondary max-h-40 z-0">
-            <figure class="w-[40%]">
-                <img src="images/stare-blank.png" alt="project" />
+        <div class="card card-side shadow-sm border rounded-2xl border-n-secondary dark:border-dm-secondary max-h-40 z-0 text-sm">
+            <figure class="w-[40%] sm:w-[37.5%] md:w-[30%] lg:w-[27.5%]">
+                <img src=img alt="project" />
             </figure>
-            <div class="card-body">
-                <h4>"New movie is released!"</h4>
-                <p>Click the button to watch on Jetflix app.</p>
-                <div class="card-actions justify-start">
-                    <button class="btn btn-n-primary">Watch</button>
-                </div>
-            </div>
-        </div>
-        <div class="card card-side shadow-sm border rounded-2xl border-n-secondary dark:border-dm-secondary max-h-40">
-            <figure class="w-[40%]">
-                <img
-                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                    alt="project"
-                />
-            </figure>
-            <div class="card-body">
-                <h4>"New movie is released!"</h4>
-                <p>Click the button to watch on Jetflix app.</p>
-                <div class="card-actions justify-start">
-                    <button class="btn btn-n-primary">Watch</button>
-                </div>
-            </div>
-        </div>
-        <div class="card card-side shadow-sm border rounded-2xl border-n-secondary dark:border-dm-secondary max-h-40 z-auto">
-            <figure class="w-[40%]">
-                <img
-                    src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-                    alt="project"
-                />
-            </figure>
-            <div class="card-body">
-                <h4>"New movie is released!"</h4>
-                <p>Click the button to watch on Jetflix app.</p>
-                <div class="card-actions justify-start">
-                    <button class="btn btn-n-primary">Watch</button>
-                </div>
+            <div class="card-body p-0 m-2 text-sm">
+                <h4>{heading}</h4>
+                <p class="h-fit">{description}</p>
+                <div class="card-actions justify-start">{children()}</div>
             </div>
         </div>
     }
 }
 
 #[component]
-pub fn Footer() -> impl IntoView {
+pub fn SmallButton(#[prop(default = "text")] text: &'static str) -> impl IntoView {
+    view! {
+        <button class="btn h-fit bg-n-primary dark:bg-dm-primary text-dm-primary dark:text-n-primary text-xs p-1">
+            {text}
+        </button>
+    }
+}
+
+#[component]
+pub fn Footer(#[prop(default = "text")] text: &'static str) -> impl IntoView {
     view! {
         <footer class="footer sm:footer-horizontal footer-center p-4 text-gray-500">
             <aside>
-                <p>"Test Footer contents Lorem ipsum dolor sit amet, consectetur"</p>
+                <p>{text}</p>
             </aside>
         </footer>
     }
@@ -111,11 +174,11 @@ pub fn Footer() -> impl IntoView {
 #[component]
 pub fn ToggleDarkMode(target_signal: RwSignal<bool>) -> impl IntoView {
     view! {
-        <label class="flex cursor-pointer gap-2">
+        <label class="flex cursor-pointer gap-2 mr-auto items-center pt-0 sm:pt-2">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
+                width="16"
+                height="16"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -128,14 +191,14 @@ pub fn ToggleDarkMode(target_signal: RwSignal<bool>) -> impl IntoView {
             </svg>
             <input
                 type="checkbox"
-                class="toggle checked:bg-dm-primary bg-n-primary checked:border-main border-dm-main"
+                class="toggle w-10 h-6 checked:bg-dm-primary bg-n-primary checked:border-main border-dm-main"
                 checked=move || target_signal.get()
                 on:click=move |_| target_signal.update(|value| *value = !*value)
             />
             <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
+                width="16"
+                height="16"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"

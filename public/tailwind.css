@@ -6,6 +6,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
+    --text-xs: 0.500rem;
     --text-sm: 0.750rem;
     --text-base: 1rem;
     --text-xl: 1.333rem;
@@ -16,12 +17,14 @@
 
     --color-main: #0f0f0f;
     --color-background: #d6d7e6;
+    --color-background-1: #E6E6EF;
     --color-n-primary: #0b004d;
     --color-n-secondary: #036677;
     --color-n-accent: #054d38;
 
     --color-dm-main: #f0f0f0;
     --color-dm-background: #191a29;
+    --color-dm-background-1: #27283F;
     --color-dm-primary: #beb3ff;
     --color-dm-secondary: #88eafc;
     --color-dm-accent: #b2fae5;
