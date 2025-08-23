@@ -183,12 +183,10 @@ pub fn SmallButton(#[prop(default = "text")] text: &'static str) -> impl IntoVie
 }
 
 #[component]
-pub fn Footer(#[prop(default = "text")] text: &'static str) -> impl IntoView {
+pub fn Footer(children: Children) -> impl IntoView {
     view! {
         <footer class="footer sm:footer-horizontal footer-center p-4 text-gray-500 text-xs xl:text-sm">
-            <aside>
-                <p>{text}</p>
-            </aside>
+            <aside>{children()}</aside>
         </footer>
     }
 }

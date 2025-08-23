@@ -178,8 +178,13 @@ fn Home() -> impl IntoView {
                             </ItemCard>
                         </For>
                     </ContentSection>
-                    <Footer text="This personal website was created with Rust (Leptos) and TailwindCSS + daisyui" />
-                    <Footer text="All stock images are taken from pexels.com" />
+                    <Footer>
+                        <p>
+                            "This personal website was created with Rust (Leptos) and TailwindCSS + daisyui"
+                        </p>
+                        <br />
+                        <p>"All stock images are taken from pexels.com"</p>
+                    </Footer>
                 </div>
             </div>
 
