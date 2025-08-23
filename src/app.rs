@@ -44,7 +44,7 @@ fn Home() -> impl IntoView {
     let active_heading = RwSignal::new("".to_string());
 
     view! {
-        <Title text="Leptos + Tailwindcss" />
+        <Title text="Ryukin - Personal Website" />
 
         // Inject metadata in the <head>
         <Meta charset="UTF-8" />
@@ -52,16 +52,18 @@ fn Home() -> impl IntoView {
 
         // Body
         <main
-            class="flex bg-background dark:bg-dm-background transition-all duration-500"
+            class="flex bg-background dark:bg-dm-background transition-colors duration-500"
             class:dark=dark_mode_signal
         >
-            <div class="flex flex-col sm:flex-row min-h-dvh mx-auto text-sm
-            text-main dark:text-dm-main bg-background dark:bg-dm-background transition-all duration-500
+            <div class="flex flex-col sm:flex-row min-h-dvh mx-auto lg:max-w-9/10 text-sm xl:text-base
+            text-main dark:text-dm-main bg-background dark:bg-dm-background transition-colors duration-500
             ">
-                <aside class="md: basis-auto lg:basis-2/5 flex flex-col max-h-dvh top-0 text-right sm:sticky">
+                <aside class="md: basis-2/5 flex flex-col max-h-dvh top-0 text-right sm:sticky">
                     <div class="flex flex-col my-auto w-full px-4 py-2 sm:pr-2 sm:pl-6">
-                        <h2 class="">Ryukin Aranta Lika</h2>
-                        <p class="text-n-primary dark:text-dm-primary">Software Engineer</p>
+                        <h1 class="text-2xl xl:text-3xl">Ryukin Aranta Lika</h1>
+                        <p class="text-sm xl:text-base text-n-primary dark:text-dm-primary">
+                            Software Engineer
+                        </p>
                         <ToggleDarkMode target_signal=dark_mode_signal />
                         <nav class="hidden sm:flex flex-col w-full pt-8 sm:pt-16 space-y-8 ">
                             <div class="space-y-2">

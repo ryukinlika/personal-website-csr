@@ -3,7 +3,7 @@ use leptos::prelude::*;
 #[component]
 pub fn SocialLink() -> impl IntoView {
     view! {
-        <div class="pt-4 sm:pt-20 w-full text-sm text-left text-gray-500 items-center">
+        <div class="pt-4 sm:pt-20 w-full text-sm xl:text-base text-left text-gray-500 items-center">
             <nav class="flex flex-row sm:flex-col space-x-1 sm:space-y-1">
                 <a
                     class="flex flex-row items-center"
@@ -73,13 +73,20 @@ pub fn SectionNav(
 ) -> impl IntoView {
     view! {
         <div
-            class="transition-all duration-100"
+            class="transition-colors duration-100"
             class=(
-                ["text-base", "font-bold", "underline", "text-n-accent", "dark:text-dm-accent"],
+                [
+                    "text-base",
+                    "xl:text-xl",
+                    "font-bold",
+                    "underline",
+                    "text-n-accent",
+                    "dark:text-dm-accent",
+                ],
                 move || active.get() == title.to_string(),
             )
             class=(
-                ["text-sm", "font-normal", "text-main", "dark:text-dm-main"],
+                ["text-sm", "xl:text-base", "font-normal", "text-main", "dark:text-dm-main"],
                 move || active.get() != title.to_string(),
             )
         >

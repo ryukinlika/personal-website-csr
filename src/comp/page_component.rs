@@ -62,7 +62,7 @@ pub fn ContentSection(
     view! {
         <div
             node_ref=el
-            class="flex flex-col space-y-0.5 transition-all duration-500 bg-radial-[at_0%_50%]"
+            class="flex flex-col space-y-0.5 transition-colors duration-500 bg-radial-[at_0%_50%]"
             class=(
                 [
                     "from-background-1",
@@ -75,9 +75,9 @@ pub fn ContentSection(
             class=(["bg-background", "dark:bg-dm-background"], move || is_outside.get())
         >
 
-            <div class="sticky top-0 z-50 bg-background dark:bg-dm-background transition-all duration-500 pb-2">
-                <h3
-                    class="mt-2 sm:mt-4 transition-all duration-500"
+            <div class="sticky top-0 z-50 bg-background dark:bg-dm-background transition-colors duration-500 pb-2">
+                <h2
+                    class="mt-2 sm:mt-4 text-xl xl:text-2xl transition-colors duration-500"
                     class=(
                         ["text-n-accent", "dark:text-dm-accent"],
                         move || active.get() == heading.to_string(),
@@ -89,7 +89,7 @@ pub fn ContentSection(
                     id=id
                 >
                     {heading}
-                </h3>
+                </h2>
                 <div class="divider sm:hidden m-0  before:bg-n-primary after:bg-n-primary dark:before:bg-dm-primary dark:after:bg-dm-primary opacity-10 "></div>
             </div>
             <div class="flex flex-col align-center w-full py-2 space-y-6">{children()}</div>
@@ -109,8 +109,10 @@ pub fn ContentHighlight(
             <div class="divider divider-horizontal m-0 p-0 pr-2 before:bg-n-secondary after:bg-n-secondary dark:before:bg-dm-secondary dark:after:bg-dm-secondary"></div>
             <div class="flex flex-col w-full px-2">
                 <div class="items-center space-y-1">
-                    <h4 class="text-n-secondary dark:text-dm-secondary">{title}</h4>
-                    <div class="w-full flex flex-row text-sm justify-between ">
+                    <h3 class="text-base xl:text-xl text-n-secondary dark:text-dm-secondary">
+                        {title}
+                    </h3>
+                    <div class="w-full flex flex-row text-sm xl:text-base justify-between ">
                         <div>{subtitle}</div>
                         <div class="text-gray-500">{time}</div>
                     </div>
@@ -158,12 +160,12 @@ pub fn ItemCard(
     children: Children,
 ) -> impl IntoView {
     view! {
-        <div class="card card-side shadow-sm border rounded-2xl border-n-secondary dark:border-dm-secondary z-0 text-sm">
+        <div class="card card-side shadow-sm border rounded-2xl border-n-secondary dark:border-dm-secondary z-0 text-sm xl:text-base">
             <figure class="flex-[35%] md:flex-[25%] lg:flex-[22.5%]">
                 <img class="w-100% aspect-square object-cover" src=img alt="project image" />
             </figure>
-            <div class="card-body p-0 m-2 sm:ml-4 text-sm flex-[65%] md:flex-[75%] lg:flex-[77.5%]">
-                <h4>{heading}</h4>
+            <div class="card-body p-0 m-2 sm:ml-4 text-sm xl:text-base flex-[65%] md:flex-[75%] lg:flex-[77.5%]">
+                <h3 class="text-base xl:text-xl">{heading}</h3>
                 <p class="">{description}</p>
                 <div class="card-actions justify-start">{children()}</div>
             </div>
