@@ -73,7 +73,7 @@ pub fn SectionNav(
 ) -> impl IntoView {
     view! {
         <div
-            class="transition-colors duration-100"
+            class="transition-all duration-100"
             class=(
                 [
                     "text-base",

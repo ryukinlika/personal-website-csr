@@ -35,11 +35,11 @@ pub fn ContentSection(
         } else {
             //disappear (1x occur on startup)
             if active.get() == heading.to_string() {
-                logging::log!(
-                    "disappear - active = heading {}, headingList={:?}",
-                    active.get(),
-                    heading_list
-                );
+                // logging::log!(
+                //     "disappear - active = heading {}, headingList={:?}",
+                //     active.get(),
+                //     heading_list
+                // );
                 let curr = heading_list.iter().position(|x| *x == active.get());
                 if curr.is_some() {
                     let next = curr.unwrap() + 1;
