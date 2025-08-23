@@ -1,12 +1,14 @@
 # Personal Website with Rust Leptos (CSR) and Tailwind CSS
 
-Starter CSR trunk were used to setup project and its initial configuration 
+Starter CSR trunk were used to setup project and its initial configuration, and add leptos-use cargo
 ```sh
 cargo generate --git https://github.com/leptos-community/start-trunk
+cargo add leptos-use
 ```
-Then, install tailwind css with npm 
+Then, install tailwind css and daisyui with npm 
 ```sh
 npm install -D tailwindcss@4.1.2
+npm install -D daisyui@5.0.50
 ```
 and modify `Trunk.toml` to ensure Trunk is using the same version
 ```
