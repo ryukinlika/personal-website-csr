@@ -113,11 +113,11 @@ pub fn ContentHighlight(
                         {title}
                     </h3>
                     <div class="w-full flex flex-row text-sm xl:text-base justify-between ">
-                        <div>{subtitle}</div>
+                        <div class="font-bold">{subtitle}</div>
                         <div class="text-gray-500">{time}</div>
                     </div>
                 </div>
-                <div class="items-start">{children()}</div>
+                <div class="items-start text-main dark:text-dm-main-1">{children()}</div>
             </div>
         </div>
     }
@@ -166,7 +166,7 @@ pub fn ItemCard(
             </figure>
             <div class="card-body p-0 sm:py-2 m-2 sm:ml-4 text-sm xl:text-base flex-[65%] md:flex-[75%] lg:flex-[77.5%] xl:flex-[85%]">
                 <h3 class="text-base xl:text-xl">{heading}</h3>
-                <p class="">{description}</p>
+                <p class="text-main dark:text-dm-main-1">{description}</p>
                 <div class="justify-start">{children()}</div>
             </div>
         </div>

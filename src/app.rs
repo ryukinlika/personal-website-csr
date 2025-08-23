@@ -182,7 +182,6 @@ fn Home() -> impl IntoView {
                         <p>
                             "This personal website was created with Rust (Leptos) and TailwindCSS + daisyui"
                         </p>
-                        <br />
                         <p>"All stock images are taken from pexels.com"</p>
                     </Footer>
                 </div>
