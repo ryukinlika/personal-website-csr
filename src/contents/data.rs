@@ -17,13 +17,12 @@ pub struct CardData {
 #[derive(Clone)]
 pub struct SkillData {
     pub skill_type: &'static str,
-    pub skill_subtype:  Vec<&'static str>,
+    pub skill_subtype: Vec<&'static str>,
 }
-
 
 pub fn get_career_data() -> Vec<ContentHighlightData> {
     // #1
-    let srin = ContentHighlightData { 
+    let srin = ContentHighlightData {
         title: "Software Engineer", 
         subtitle: "Samsung R&D Institute Indonesia", 
         time: "September 2023 - Present",
@@ -34,10 +33,10 @@ pub fn get_career_data() -> Vec<ContentHighlightData> {
             "Developed a Linux Daemon in C++ that manages TV workload after software update, improving responsiveness and performance of the TV.",
             "Prototyped a solution for running deep learning framework on Android for internal developers.",
         ]
-    }; 
+    };
 
     // #2
-    let xtremax = ContentHighlightData { 
+    let xtremax = ContentHighlightData {
         title: "Software Developer (Backend)", 
         subtitle: "Xtremax Indonesia", 
         time: "February 2023 - August 2023",
@@ -48,7 +47,7 @@ pub fn get_career_data() -> Vec<ContentHighlightData> {
     };
 
     // #3
-    let tokped = ContentHighlightData { 
+    let tokped = ContentHighlightData {
         title: "Software Engineer Intern (Backend) ", 
         subtitle: "Tokopedia", 
         time: "August 2021 - February 2022",
@@ -58,27 +57,26 @@ pub fn get_career_data() -> Vec<ContentHighlightData> {
      ]
     };
 
-
     vec![srin, xtremax, tokped]
 }
 
 pub fn get_edu_data() -> Vec<ContentHighlightData> {
     // #1
-    let umn = ContentHighlightData { 
-        title: "Bachelor of Computer Engineering", 
-        subtitle: "Universitas Multimedia Nusantara", 
+    let umn = ContentHighlightData {
+        title: "Bachelor of Computer Engineering",
+        subtitle: "Universitas Multimedia Nusantara",
         time: "August 2018 - July 2022",
         description: vec![
             "Grade: 3.99 / 4.00, Graduated with Distinction",
-            "Best Graduate of Bachelor's Degree Graduation Batch XXIII, 2022"
-        ]
-    }; 
+            "Best Graduate of Bachelor's Degree Graduation Batch XXIII, 2022",
+        ],
+    };
 
     vec![umn]
 }
 
-pub fn get_project_data() -> Vec<CardData>{
-    // #0 
+pub fn get_project_data() -> Vec<CardData> {
+    // #0
     let website = CardData {
         heading:"Personal Website",
         description:"Web Development - Personal website built using Rust (Leptos) and TailwindCSS + daisyui. Techstack were choosen to challenge myself in learning new framework and designing a website",
@@ -95,7 +93,7 @@ pub fn get_project_data() -> Vec<CardData>{
         link:"https://github.com/ryukinlika/flaskclassifier"
     };
 
-    // #2 
+    // #2
     let trash = CardData {
         heading: "Deep Learning Based Trash Separator",
         description: "Web application and Backend developed with Golang to monitor trash bin status and detected items. Implement AI image recognition on Raspberry Pi using camera and deep learning using Python and TensorFlow Lite.", 
@@ -130,59 +128,58 @@ pub fn get_project_data() -> Vec<CardData>{
     // #6
     let micropractice = CardData {
         heading: "Microservice Architecture Practice",
-        description: "Microservice architecture practice using Java Spring Boot framework", 
-        img:"images/microservice_code.jpg",
-        link:"https://github.com/ryukinlika/microservice-practice",
+        description: "Microservice architecture practice using Java Spring Boot framework",
+        img: "images/microservice_code.jpg",
+        link: "https://github.com/ryukinlika/microservice-practice",
     };
-    
-    vec![website, nema, trash, enhancer, inventory, selfbal, micropractice]
+
+    vec![
+        website,
+        nema,
+        trash,
+        enhancer,
+        inventory,
+        selfbal,
+        micropractice,
+    ]
 }
 
 pub fn get_skill_data() -> Vec<SkillData> {
     // #1
     let general = SkillData {
-        skill_type: "Programming Languages", 
+        skill_type: "Programming Languages",
         skill_subtype: vec![
-            "Golang", 
-            "C/C++", 
-            ".NET C#", 
-            "Python", 
-            "Java", 
-            "Tizen", 
-            "Spring Boot", 
+            "Golang",
+            "C/C++",
+            ".NET C#",
+            "Python",
+            "Java",
+            "Tizen",
+            "Spring Boot",
         ],
     };
 
     // #2
     let web = SkillData {
-        skill_type: "Web Programming", 
-        skill_subtype: vec![
-            "Javascript", 
-            "PHP", 
-            "HTML/CSS", 
-            "Node.js", 
-        ],
+        skill_type: "Web Programming",
+        skill_subtype: vec!["Javascript", "PHP", "HTML/CSS", "Node.js"],
     };
 
     // #3
     let database = SkillData {
-        skill_type: "Database", 
-        skill_subtype: vec![
-            "MySQL", 
-            "PostgreSQL", 
-            "Redis", 
-        ],
+        skill_type: "Database",
+        skill_subtype: vec!["MySQL", "PostgreSQL", "Redis"],
     };
 
     // #4
     let others = SkillData {
-        skill_type: "Others", 
+        skill_type: "Others",
         skill_subtype: vec![
-            "Linux", 
-            "Git", 
-            "Image Recognition", 
-            "Computer Vision", 
-            "CMake", 
+            "Linux",
+            "Git",
+            "Image Recognition",
+            "Computer Vision",
+            "CMake",
         ],
     };
 
