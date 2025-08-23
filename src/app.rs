@@ -18,6 +18,7 @@ pub fn App() -> impl IntoView {
         <Router>
             <Routes fallback=|| "Page not found.">
                 <Route path=StaticSegment("") view=Home />
+                <Route path=StaticSegment("/personal-website-csr") view=Home />
             </Routes>
         </Router>
     }
