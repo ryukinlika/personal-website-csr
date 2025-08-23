@@ -9,9 +9,9 @@ inject_scripts = true
 [watch]
 watch = []
 ignore = [
-    "node_modules",
-    "dist",
-    "target"
+#    "node_modules",
+#    "dist",
+#    "target"
 ]
 
 [serve]
