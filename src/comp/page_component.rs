@@ -1,6 +1,8 @@
 use leptos::{html::Div, logging, prelude::*};
 use leptos_use::{use_element_visibility, use_mouse_in_element, UseMouseInElementReturn};
 
+use crate::contents::data::*;
+
 #[component]
 pub fn ContentSection(
     #[prop(default = "Heading")] heading: &'static str,
@@ -60,10 +62,9 @@ pub fn ContentSection(
     view! {
         <div
             node_ref=el
-            class="flex flex-col space-y-0.5 transition-all duration-500"
+            class="flex flex-col space-y-0.5 transition-all duration-500 bg-radial-[at_0%_50%]"
             class=(
                 [
-                    "bg-radial-[at_0%_50%]",
                     "from-background-1",
                     "to-background",
                     "dark:from-dm-background-1",
@@ -74,7 +75,7 @@ pub fn ContentSection(
             class=(["bg-background", "dark:bg-dm-background"], move || is_outside.get())
         >
 
-            <div class="sticky top-0 z-50 bg-background dark:bg-dm-background transition-all duration-500">
+            <div class="sticky top-0 z-50 bg-background dark:bg-dm-background transition-all duration-500 pb-2">
                 <h3
                     class="mt-2 sm:mt-4 transition-all duration-500"
                     class=(
@@ -130,21 +131,40 @@ pub fn ItemLists(items: Vec<&'static str>) -> impl IntoView {
 }
 
 #[component]
+pub fn SkillSection(skill_data: ReadSignal<Vec<SkillData>>) -> impl IntoView {
+    view! {
+        <div class="grid grid-cols-6 space-y-2 items-start">
+            <For each=move || skill_data.get() key=|k| k.skill_type let(child)>
+                <div class="col-span-2 px-2">
+                    <p>{child.skill_type}</p>
+                </div>
+                <div class="col-span-4 space-x-0.5">
+                    {child
+                        .skill_subtype
+                        .into_iter()
+                        .map(|i| view! { <SmallButton text=i /> })
+                        .collect_view()}
+                </div>
+            </For>
+        </div>
+    }
+}
+
+#[component]
 pub fn ItemCard(
     #[prop(default = "Heading")] heading: &'static str,
     #[prop(default = "Description")] description: &'static str,
     #[prop(default = "images/stare-blank.png")] img: &'static str,
-    #[prop(default = "")] link: &'static str,
     children: Children,
 ) -> impl IntoView {
     view! {
-        <div class="card card-side shadow-sm border rounded-2xl border-n-secondary dark:border-dm-secondary max-h-40 z-0 text-sm">
-            <figure class="w-[40%] sm:w-[37.5%] md:w-[30%] lg:w-[27.5%]">
-                <img src=img alt="project" />
+        <div class="card card-side shadow-sm border rounded-2xl border-n-secondary dark:border-dm-secondary z-0 text-sm">
+            <figure class="flex-[35%] md:flex-[25%] lg:flex-[22.5%]">
+                <img class="w-100% aspect-square object-cover" src=img alt="project image" />
             </figure>
-            <div class="card-body p-0 m-2 text-sm">
+            <div class="card-body p-0 m-2 sm:ml-4 text-sm flex-[65%] md:flex-[75%] lg:flex-[77.5%]">
                 <h4>{heading}</h4>
-                <p class="h-fit">{description}</p>
+                <p class="">{description}</p>
                 <div class="card-actions justify-start">{children()}</div>
             </div>
         </div>
@@ -154,7 +174,7 @@ pub fn ItemCard(
 #[component]
 pub fn SmallButton(#[prop(default = "text")] text: &'static str) -> impl IntoView {
     view! {
-        <button class="btn h-fit bg-n-primary dark:bg-dm-primary text-dm-primary dark:text-n-primary text-xs p-1">
+        <button class="btn h-fit bg-n-primary dark:bg-dm-primary text-dm-main dark:text-main text-xs p-1">
             {text}
         </button>
     }
@@ -163,7 +183,7 @@ pub fn SmallButton(#[prop(default = "text")] text: &'static str) -> impl IntoVie
 #[component]
 pub fn Footer(#[prop(default = "text")] text: &'static str) -> impl IntoView {
     view! {
-        <footer class="footer sm:footer-horizontal footer-center p-4 text-gray-500">
+        <footer class="footer sm:footer-horizontal footer-center p-4 text-gray-500 text-xs">
             <aside>
                 <p>{text}</p>
             </aside>

@@ -1,8 +1,7 @@
 /* Main Tailwind CSS file */
+@import url('https://fonts.googleapis.com/css2?family=Roboto');
 @import "tailwindcss";
 @plugin "daisyui";
-@import url('https://fonts.googleapis.com/css?family=Roboto:700|Roboto:400');
-
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
@@ -18,21 +17,22 @@
     --color-main: #0f0f0f;
     --color-background: #d6d7e6;
     --color-background-1: #E6E6EF;
-    --color-n-primary: #0b004d;
+    --color-n-primary: #433C6A;
     --color-n-secondary: #036677;
-    --color-n-accent: #054d38;
+    --color-n-accent: #866AF6;
 
     --color-dm-main: #f0f0f0;
     --color-dm-background: #191a29;
-    --color-dm-background-1: #27283F;
+    --color-dm-background-1: #292b3f;
     --color-dm-primary: #beb3ff;
-    --color-dm-secondary: #88eafc;
-    --color-dm-accent: #b2fae5;
+    --color-dm-secondary: #88d3fc;
+    --color-dm-accent: #B1FFFA;
 }
 
 
 body {
     font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
 }

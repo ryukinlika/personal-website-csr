@@ -5,7 +5,12 @@ pub fn SocialLink() -> impl IntoView {
     view! {
         <div class="pt-4 sm:pt-20 w-full text-sm text-left text-gray-500 items-center">
             <nav class="flex flex-row sm:flex-col space-x-1 sm:space-y-1">
-                <a class="flex flex-row items-center" rel="noopener noreferrer" href="#">
+                <a
+                    class="flex flex-row items-center"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://www.linkedin.com/in/ryukinlika"
+                >
                     <svg
                         class="fill-gray-500 w-4 h-4"
                         fill="#000000"
@@ -26,9 +31,14 @@ pub fn SocialLink() -> impl IntoView {
                             </g>
                         </g>
                     </svg>
-                    <div class="hidden sm:flex px-2 ">LinkedIn</div>
+                    <div class="hidden sm:flex px-2 ">"LinkedIn ↗"</div>
                 </a>
-                <a class="flex flex-row items-center" rel="noopener noreferrer" href="#">
+                <a
+                    class="flex flex-row items-center"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://github.com/ryukinlika"
+                >
                     <svg
                         class="fill-gray-500 w-4 h-4"
                         fill="#000000"
@@ -47,7 +57,7 @@ pub fn SocialLink() -> impl IntoView {
                         />
 
                     </svg>
-                    <div class="hidden sm:flex px-2 ">Github</div>
+                    <div class="hidden sm:flex px-2 ">"Github ↗"</div>
                 </a>
 
             </nav>

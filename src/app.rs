@@ -27,16 +27,16 @@ pub fn App() -> impl IntoView {
 fn Home() -> impl IntoView {
     let dark_mode_signal = RwSignal::new(true);
 
-    // About Data
-
     // Career Data
-    let (career_data, _) = signal(generate_career_data());
-    // Skills Data
+    let (career_data, _) = signal(get_career_data());
 
+    // Skills Data
+    let (skill_data, _) = signal(get_skill_data());
     // Education Data
-    let (edu_data, _) = signal(generate_edu_data());
+    let (edu_data, _) = signal(get_edu_data());
 
     // Project Data
+    let (proj_data, _) = signal(get_project_data());
 
     // Active heading
     let heading_list: RwSignal<Vec<String>> = RwSignal::new(vec![]);
@@ -51,23 +51,17 @@ fn Home() -> impl IntoView {
 
         // Body
         <main
-            class="flex bg-background dark:bg-dm-background transition-all duration-1000"
+            class="flex bg-background dark:bg-dm-background transition-all duration-500"
             class:dark=dark_mode_signal
         >
             <div class="flex flex-col sm:flex-row min-h-dvh mx-auto text-sm
-            text-main dark:text-dm-main bg-background dark:bg-dm-background transition-all duration-1000
+            text-main dark:text-dm-main bg-background dark:bg-dm-background transition-all duration-500
             ">
                 <aside class="md: basis-auto lg:basis-2/5 flex flex-col max-h-dvh top-0 text-right sm:sticky">
                     <div class="flex flex-col my-auto w-full px-4 py-2 sm:pr-2 sm:pl-6">
                         <h2 class="">Ryukin Aranta Lika</h2>
                         <p class="text-n-primary dark:text-dm-primary">Software Engineer</p>
                         <ToggleDarkMode target_signal=dark_mode_signal />
-                        // <button
-                        // class="rounded px-3 py-2 m-1 border-b-4 border-l-2 shadow-lg bg-blue-700 border-blue-800 text-white"
-                        // on:click=move |_| dark_mode_signal.update(|value| *value = !*value)
-                        // >
-                        // "toggle"
-                        // </button>
                         <nav class="hidden sm:flex flex-col w-full pt-8 sm:pt-16 space-y-8 ">
                             <div class="space-y-2">
                                 <div class="flex flex-col space-y-1">
@@ -112,8 +106,11 @@ fn Home() -> impl IntoView {
                     >
                         <div>
                             <p>
-                                "An engineer with an interest in wide range of software topics, eager to learn new concepts and technologies, and
-                                worked on diverse projects. A fast learner and quick to adapt to new challenges."
+                                "I am an engineer with an interest in wide range of software topics, eager to learn new concepts and technologies, and worked on diverse projects. I've worked across multiple areas including backend services, web development, AI tools, system integration, and many more."
+                            </p>
+                            <br />
+                            <p>
+                                "My experience has shaped me into a versatile engineer who adapts quickly to new challenges. I enjoy learning new topics and improving myself."
                             </p>
                             <br />
                         </div>
@@ -141,7 +138,7 @@ fn Home() -> impl IntoView {
                         heading_list=heading_list
                         active=active_heading
                     >
-                        "aa"
+                        <SkillSection skill_data=skill_data />
                     </ContentSection>
                     <ContentSection
                         heading="Education"
@@ -166,19 +163,21 @@ fn Home() -> impl IntoView {
                         heading_list=heading_list
                         active=active_heading
                     >
-                        <ItemCard>
-                            <a href="aa">
-                                <SmallButton text="Github Link" />
-                            </a>
-                        </ItemCard>
-                        <ItemCard>
-                            <a href="aa">
-                                <SmallButton text="Github Link" />
-                            </a>
-                        </ItemCard>
-                    </ContentSection>
+                        <For each=move || proj_data.get() key=|k| k.heading let(child)>
+                            <ItemCard
+                                heading=child.heading
+                                description=child.description
+                                img=child.img
+                            >
 
-                    <Footer text="This personal website was created with Rust (Leptos) and TailwindCSS + daisyui to challenge myself in learning new framework and designing a website" />
+                                <a href=child.link target="_blank" rel="noopener noreferrer">
+                                    <SmallButton text="Github ↗" />
+                                </a>
+                            </ItemCard>
+                        </For>
+                    </ContentSection>
+                    <Footer text="This personal website was created with Rust (Leptos) and TailwindCSS + daisyui" />
+                    <Footer text="All stock images are taken from pexels.com" />
                 </div>
             </div>
 
