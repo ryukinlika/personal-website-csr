@@ -1,6 +1,7 @@
 # Personal Website with Rust Leptos (CSR) and Tailwind CSS
+Github Page deployment link: https://ryukinlika.github.io/personal-website-csr/
 
-Starter CSR trunk were used to setup project and its initial configuration, and add leptos-use cargo
+Starter CSR trunk were used to setup project and its initial configuration, then, added leptos-use cargo
 ```sh
 cargo generate --git https://github.com/leptos-community/start-trunk
 cargo add leptos-use

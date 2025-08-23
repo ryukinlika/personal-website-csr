@@ -78,7 +78,7 @@ pub fn SectionNav(
                 [
                     "text-base",
                     "xl:text-xl",
-                    "font-bold",
+                    "font-extrabold",
                     "underline",
                     "text-n-accent",
                     "dark:text-dm-accent",
