@@ -161,13 +161,13 @@ pub fn ItemCard(
 ) -> impl IntoView {
     view! {
         <div class="card card-side shadow-sm border rounded-2xl border-n-secondary dark:border-dm-secondary z-0 text-sm xl:text-base">
-            <figure class="flex-[35%] md:flex-[25%] lg:flex-[22.5%]">
+            <figure class="flex-[35%] md:flex-[25%] lg:flex-[22.5%] 2xl:flex-[17.5%]">
                 <img class="w-100% aspect-square object-cover" src=img alt="project image" />
             </figure>
-            <div class="card-body p-0 m-2 sm:ml-4 text-sm xl:text-base flex-[65%] md:flex-[75%] lg:flex-[77.5%]">
+            <div class="card-body p-0 sm:py-2 m-2 sm:ml-4 text-sm xl:text-base flex-[65%] md:flex-[75%] lg:flex-[77.5%] xl:flex-[85%]">
                 <h3 class="text-base xl:text-xl">{heading}</h3>
                 <p class="">{description}</p>
-                <div class="card-actions justify-start">{children()}</div>
+                <div class="justify-start">{children()}</div>
             </div>
         </div>
     }
@@ -176,7 +176,7 @@ pub fn ItemCard(
 #[component]
 pub fn SmallButton(#[prop(default = "text")] text: &'static str) -> impl IntoView {
     view! {
-        <button class="btn h-fit bg-n-primary dark:bg-dm-primary text-dm-main dark:text-main text-xs p-1">
+        <button class="btn h-fit bg-n-primary dark:bg-dm-primary text-dm-main dark:text-main text-xs xl:text-sm p-1">
             {text}
         </button>
     }
@@ -185,7 +185,7 @@ pub fn SmallButton(#[prop(default = "text")] text: &'static str) -> impl IntoVie
 #[component]
 pub fn Footer(#[prop(default = "text")] text: &'static str) -> impl IntoView {
     view! {
-        <footer class="footer sm:footer-horizontal footer-center p-4 text-gray-500 text-xs">
+        <footer class="footer sm:footer-horizontal footer-center p-4 text-gray-500 text-xs xl:text-sm">
             <aside>
                 <p>{text}</p>
             </aside>

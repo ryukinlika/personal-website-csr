@@ -172,7 +172,6 @@ fn Home() -> impl IntoView {
                                 description=child.description
                                 img=child.img
                             >
-
                                 <a href=child.link target="_blank" rel="noopener noreferrer">
                                     <SmallButton text="Github ↗" />
                                 </a>
