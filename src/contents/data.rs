@@ -69,6 +69,8 @@ pub fn get_edu_data() -> Vec<ContentHighlightData> {
         description: vec![
             "Grade: 3.99 / 4.00, Graduated with Distinction",
             "Best Graduate of Bachelor's Degree Graduation Batch XXIII, 2022",
+            "Published 'Deep Learning Models for Automatic Identification of Plant-Parasitic Nematode', Artificial Intelligence in Agriculture, Volume 7 (2023).",
+            "Co-authored 'A Comparative Analysis of Convolutional Neural Networks Approaches for Phytoparasitic Nematode Identification', Commun. Math Biol. Neurosci., 2023 (2023).",
         ],
     };
 
@@ -162,7 +164,7 @@ pub fn get_skill_data() -> Vec<SkillData> {
     // #2
     let web = SkillData {
         skill_type: "Web Programming",
-        skill_subtype: vec!["Javascript", "PHP", "HTML/CSS", "Node.js"],
+        skill_subtype: vec!["Javascript", "PHP", "HTML/CSS", "TailwindCSS", "Node.js"],
     };
 
     // #3
